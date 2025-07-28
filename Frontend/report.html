@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusShield - Report Incident</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #e0f2ff, #f8faff);
+      overflow-x: hidden;
+    }
+        /* Navbar Styling */
+.navbar {
+  background-color: #f8fafc;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+  color: #1e293b;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+  padding: 0.6rem 1rem;
+}
+.navbar-nav .nav-link:hover {
+  color: #2563eb;
+}
+.navbar.shrink {
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Report Now Button */
+.btn-warning{
+  color: #1e293b;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(250, 204, 21, 0.3);
+}
+.btn-warning:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(234, 179, 8, 0.4);
+}
+
+/* Login Button */
+.btn-outline-primary {
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+}
+.btn-outline-primary:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Profile Icon */
+.profile-icon i {
+  color: #16a34a;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.profile-icon i:hover {
+  color: #15803d;
+}
+
+/* Notification Bell Dot */
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  display: none;
+}
+#notificationBell.new {
+  animation: shake 0.6s ease-in-out 2;
+}
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+body.dark-mode .navbar {
+  background-color: #0f172a;
+}
+body.dark-mode .nav-link {
+  color: #f8fafc;
+}
+
+/* Search Bar */
+#searchInput {
+  max-width: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  border: 1px solid #2563eb;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+#searchInput.active {
+  max-width: 180px;
+  opacity: 1;
+}
+
+/* Hamburger Icon */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+    /* Background Animation */
+    .animated-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://svgshare.com/i/19tK.svg') repeat;
+      opacity: 0.08;
+      animation: move-bg 40s linear infinite;
+      z-index: -1;
+    }
+    @keyframes move-bg {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      background: rgba(102,166,255,0.3);
+      border-radius: 50%;
+      animation: float 15s infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      50% { transform: translateY(-500px) scale(1.2); opacity: 0.8; }
+      100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    }
+
+    /* Container */
+    .report-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 150px auto;
+      padding: 40px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    .report-container:hover { transform: translateY(-5px); }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeIn 0.8s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      transition: border 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #66a6ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(102,166,255,0.4);
+    }
+
+    button {
+      background: linear-gradient(135deg, #66a6ff, #89f7fe);
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover { transform: scale(1.05); }
+
+    .buttons { display: flex; justify-content: space-between; }
+
+    /* Horizontal Progress Bar */
+    .progress-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #e0e7ff;
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+    .progress {
+      height: 4px;
+      background: linear-gradient(90deg, #66a6ff, #89f7fe);
+      width: 0%;
+      transition: width 0.4s ease;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      background: #e0e7ff;
+      color: #555;
+      border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 2;
+      font-weight: bold;
+    }
+    .step.active, .step.completed { background: #66a6ff; color: white; }
+
+    /* Thank You Screen */
+    .thankyou-container {
+      text-align: center;
+      background: linear-gradient(135deg, #66a6ff, #89f7fe);
+      padding: 60px;
+      border-radius: 20px;
+      color: white;
+      font-size: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    } 
+        /* Footer Styling */
+footer {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #d1d5db;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Gradient Overlay */
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.1), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* Headings */
+footer h5, footer h6 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Links */
+footer a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Contact Icons */
+footer i {
+  color: #60a5fa;
+  margin-right: 6px;
+}
+
+/* Newsletter Input */
+footer .form-control {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #d1d5db;
+  border-radius: 30px;
+  padding: 8px 15px;
+  transition: border-color 0.3s;
+}
+footer .form-control:focus {
+  border-color: #60a5fa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(96,165,250,0.4);
+}
+
+/* Newsletter Button */
+footer .btn-light {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: #60a5fa;
+  border: none;
+}
+footer .btn-light:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* Social Icons */
+footer .bi-facebook,
+footer .bi-twitter,
+footer .bi-instagram {
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+footer a:hover .bi-facebook { color: #3b82f6; }
+footer a:hover .bi-twitter { color: #60a5fa; }
+footer a:hover .bi-instagram { color: #f43f5e; }
+
+/* Divider */
+footer hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Bottom Text */
+footer .text-center p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+  </style>
+</head>
+<body>
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top bg-white py-3">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center text-primary fs-4" href="#">
+      <i class="fas fa-shield-alt me-2 fs-4"></i> <span id="logoText">SafeSphere</span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler custom-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html" id="homeLink">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="aboutus.html" id="aboutLink">About Us</a></li>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-lg-2 px-4 py-2 rounded-pill fw-semibold" href="report.html" id="reportBtn">Report Now</a>
+        </li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="dashboard.html" id="dashboardLink">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="contactus.html" id="contactLink">Contact</a></li>
+
+        <!-- Search Icon -->
+        <li class="nav-item d-flex align-items-center ms-2">
+          <i class="bi bi-search fs-5 cursor-pointer" id="searchToggle"></i>
+          <input type="text" id="searchInput" class="form-control d-none ms-2" placeholder="Search...">
+        </li>
+
+        <!-- Notification Bell -->
+        <li class="nav-item position-relative ms-3">
+          <i class="bi bi-bell fs-5 cursor-pointer" id="notificationBell"></i>
+          <span class="notification-dot"></span>
+        </li>
+
+        <!-- Dark Mode Toggle -->
+        <li class="nav-item ms-3">
+          <i class="bi bi-moon-stars fs-5 cursor-pointer" id="themeToggle"></i>
+        </li>
+
+        <!-- Language Selector -->
+        <li class="nav-item dropdown ms-3">
+          <i class="bi bi-translate fs-5 cursor-pointer dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+          </ul>
+        </li>
+
+        <!-- Login Button -->
+        <li class="nav-item">
+          <a href="login.html" class="btn btn-outline-primary ms-lg-2 px-4 py-2 rounded-pill" id="loginBtn">Login</a>
+        </li>
+      </ul>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-icon dropdown ms-3">
+        <i class="fas fa-user-circle fs-3 text-secondary" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="profileDropdown">
+          <li><h6 class="dropdown-header" id="accountHeader">Account</h6></li>
+          <li><a class="dropdown-item" href="account.html" id="myAccount">My Account</a></li>
+          <li><a class="dropdown-item" href="settings.html" id="settingsLink">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header" id="supportHeader">Support</h6></li>
+          <li><a class="dropdown-item" href="help.html" id="helpLink">Help</a></li>
+          <li><a class="dropdown-item" href="feedback.html" id="feedbackLink">Feedback</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html" id="logoutBtn">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+  <div class="animated-bg"></div>
+  <div class="bubble" style="left:10%; width:40px; height:40px;"></div>
+  <div class="bubble" style="left:50%; width:60px; height:60px; animation-delay:3s;"></div>
+  <div class="bubble" style="left:80%; width:30px; height:30px; animation-delay:6s;"></div>
+
+  <div class="report-container">
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="progress"></div>
+      <div class="step active">1</div>
+      <div class="step">2</div>
+      <div class="step">3</div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="form-step active">
+      <h2>Incident Details</h2>
+      <input type="text" placeholder="What happened?" id="incident-what">
+      <select id="incident-type">
+        <option value="">Type of Incident</option>
+        <option>Ragging</option>
+        <option>Bullying</option>
+        <option>Harassment</option>
+        <option>Theft</option>
+        <option>Other</option>
+      </select>
+      <input type="text" placeholder="Where did it happen?" id="incident-where">
+      <input type="datetime-local" id="incident-time">
+      <textarea placeholder="How did it happen? Details..." id="incident-details"></textarea>
+      <div class="buttons">
+        <button id="next1">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step">
+      <h2>Upload Documents</h2>
+      <input type="file" id="incident-docs" multiple>
+      <small class="text-muted">Max 3 files, each ≤ 2MB</small>
+      <div class="buttons">
+        <button id="back1">Back</button>
+        <button id="next2">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-step">
+      <h2>Review Your Report</h2>
+      <div id="review-box"></div>
+      <div class="buttons">
+        <button id="edit">Edit</button>
+        <button id="submit">Submit</button>
+      </div>
+    </div>
+
+    <!-- Thank You -->
+    <div class="form-step thankyou-container">
+      Report Submitted Successfully!<br>
+      Redirecting to homepage...
+    </div>
+  </div>
+    <!-- Footer  -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #0d6efd;">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- About  -->
+        <div class="col-md-3">
+          <h5 class="fw-bold">CampusShield</h5>
+          <p class="small">
+            Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
+          </p>
+        </div>
+        <!-- Quick Links  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#report">Report</a></li>
+          </ul>
+        </div>
+        <!-- Contact  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Contact</h6>
+          <ul class="list-unstyled mt-3 small">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>support@campusshield.com</li>
+            <li><i class="bi bi-telephone-fill me-2"></i>+1 234 567 890</li>
+          </ul>
+        </div>
+         <!-- Newsletter  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Stay Updated</h6>
+          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <form class="d-flex">
+            <input type="email" class="form-control me-2" placeholder="Your Email" required>
+            <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
+          </form>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light mt-4">
+      <div class="text-center small mt-3">
+        <p class="mb-0">© 2025 CampusShield. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const steps = document.querySelectorAll('.form-step');
+    const next1 = document.getElementById('next1');
+    const back1 = document.getElementById('back1');
+    const next2 = document.getElementById('next2');
+    const editBtn = document.getElementById('edit');
+    const submitBtn = document.getElementById('submit');
+    const progress = document.querySelector('.progress');
+    const stepCircles = document.querySelectorAll('.step');
+    const reviewBox = document.getElementById('review-box');
+    const fileInput = document.getElementById('incident-docs');
+    let currentStep = 0;
+
+    function showStep(index) {
+      steps.forEach((s, i) => s.classList.toggle('active', i === index));
+      progress.style.width = (index / (steps.length - 2)) * 100 + '%';
+      stepCircles.forEach((circle, i) => {
+        circle.classList.toggle('active', i === index);
+        circle.classList.toggle('completed', i < index);
+      });
+    }
+
+    // Validation for Step 1
+    next1.addEventListener('click', () => {
+      const what = document.getElementById('incident-what').value.trim();
+      const type = document.getElementById('incident-type').value.trim();
+      const where = document.getElementById('incident-where').value.trim();
+      const time = document.getElementById('incident-time').value.trim();
+      const details = document.getElementById('incident-details').value.trim();
+
+      if (!what || !type || !where || !time || !details) {
+        alert("Please fill out all fields before proceeding.");
+        return;
+      }
+      currentStep = 1;
+      showStep(currentStep);
+    });
+
+    // Back to Step 1
+    back1.addEventListener('click', () => {
+      currentStep = 0; showStep(currentStep);
+    });
+
+    // Validate Files and Show Review
+    next2.addEventListener('click', () => {
+      const files = fileInput.files;
+      if (files.length > 3) {
+        alert("You can upload a maximum of 3 files.");
+        return;
+      }
+      for (let f of files) {
+        if (f.size > 2 * 1024 * 1024) {
+          alert("Each file must be ≤ 2MB.");
+          return;
+        }
+      }
+      reviewBox.innerHTML = `
+        <p><strong>What:</strong> ${document.getElementById('incident-what').value}</p>
+        <p><strong>Type:</strong> ${document.getElementById('incident-type').value}</p>
+        <p><strong>Where:</strong> ${document.getElementById('incident-where').value}</p>
+        <p><strong>Time:</strong> ${document.getElementById('incident-time').value}</p>
+        <p><strong>Details:</strong> ${document.getElementById('incident-details').value}</p>
+        <p><strong>Files:</strong> ${files.length} uploaded</p>
+      `;
+      currentStep = 2;
+      showStep(currentStep);
+    });
+
+    // Edit
+    editBtn.addEventListener('click', () => {
+      currentStep = 0; showStep(currentStep);
+    });
+
+    // Submit
+    submitBtn.addEventListener('click', () => {
+      currentStep = 3;
+      showStep(currentStep);
+      setTimeout(() => {
+        window.location.href = "index.html"; // Redirect to homepage
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
