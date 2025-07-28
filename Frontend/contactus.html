@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | CampusShield</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; }
+            /* Navbar Styling */
+.navbar {
+  background-color: #f8fafc;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+  color: #1e293b;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+  padding: 0.6rem 1rem;
+}
+.navbar-nav .nav-link:hover {
+  color: #2563eb;
+}
+.navbar.shrink {
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Report Now Button */
+.btn-warning{
+  color: #1e293b;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(250, 204, 21, 0.3);
+}
+.btn-warning:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(234, 179, 8, 0.4);
+}
+
+/* Login Button */
+.btn-outline-primary {
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+}
+.btn-outline-primary:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Profile Icon */
+.profile-icon i {
+  color: #16a34a;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.profile-icon i:hover {
+  color: #15803d;
+}
+
+/* Notification Bell Dot */
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  display: none;
+}
+#notificationBell.new {
+  animation: shake 0.6s ease-in-out 2;
+}
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+body.dark-mode .navbar {
+  background-color: #0f172a;
+}
+body.dark-mode .nav-link {
+  color: #f8fafc;
+}
+
+/* Search Bar */
+#searchInput {
+  max-width: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  border: 1px solid #2563eb;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+#searchInput.active {
+  max-width: 180px;
+  opacity: 1;
+}
+
+/* Hamburger Icon */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+    /* Contact Section */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      background: url('https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(2px);
+    }
+
+    .contact-card {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem;
+      background: rgba(255,255,255,0.95);
+      border-radius: 15px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    .contact-card h2 { color: #2563eb; margin-bottom: 1rem; }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      transition: 0.3s;
+    }
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #6b7280;
+      font-size: 1rem;
+    }
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: #2563eb;
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(37,99,235,0.3);
+    }
+
+    .contact-card button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #2563eb;
+      color: #fff;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .contact-card button:hover {
+      background: #1e4fd1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37,99,235,0.4);
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.85rem;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+            /* Footer Styling */
+footer {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #d1d5db;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Gradient Overlay */
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.1), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* Headings */
+footer h5, footer h6 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Links */
+footer a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Contact Icons */
+footer i {
+  color: #60a5fa;
+  margin-right: 6px;
+}
+
+/* Newsletter Input */
+footer .form-control {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #d1d5db;
+  border-radius: 30px;
+  padding: 8px 15px;
+  transition: border-color 0.3s;
+}
+footer .form-control:focus {
+  border-color: #60a5fa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(96,165,250,0.4);
+}
+
+/* Newsletter Button */
+footer .btn-light {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: #60a5fa;
+  border: none;
+}
+footer .btn-light:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* Social Icons */
+footer .bi-facebook,
+footer .bi-twitter,
+footer .bi-instagram {
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+footer a:hover .bi-facebook { color: #3b82f6; }
+footer a:hover .bi-twitter { color: #60a5fa; }
+footer a:hover .bi-instagram { color: #f43f5e; }
+
+/* Divider */
+footer hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Bottom Text */
+footer .text-center p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+  </style>
+</head>
+<body>
+  <!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top bg-white py-3">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center text-primary fs-4" href="#">
+      <i class="fas fa-shield-alt me-2 fs-4"></i> <span id="logoText">SafeSphere</span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler custom-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html" id="homeLink">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="aboutus.html" id="aboutLink">About Us</a></li>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-lg-2 px-4 py-2 rounded-pill fw-semibold" href="report.html" id="reportBtn">Report Now</a>
+        </li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="dashboard.html" id="dashboardLink">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="contactus.html" id="contactLink">Contact</a></li>
+
+        <!-- Search Icon -->
+        <li class="nav-item d-flex align-items-center ms-2">
+          <i class="bi bi-search fs-5 cursor-pointer" id="searchToggle"></i>
+          <input type="text" id="searchInput" class="form-control d-none ms-2" placeholder="Search...">
+        </li>
+
+        <!-- Notification Bell -->
+        <li class="nav-item position-relative ms-3">
+          <i class="bi bi-bell fs-5 cursor-pointer" id="notificationBell"></i>
+          <span class="notification-dot"></span>
+        </li>
+
+        <!-- Dark Mode Toggle -->
+        <li class="nav-item ms-3">
+          <i class="bi bi-moon-stars fs-5 cursor-pointer" id="themeToggle"></i>
+        </li>
+
+        <!-- Language Selector -->
+        <li class="nav-item dropdown ms-3">
+          <i class="bi bi-translate fs-5 cursor-pointer dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+          </ul>
+        </li>
+
+        <!-- Login Button -->
+        <li class="nav-item">
+          <a href="login.html" class="btn btn-outline-primary ms-lg-2 px-4 py-2 rounded-pill" id="loginBtn">Login</a>
+        </li>
+      </ul>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-icon dropdown ms-3">
+        <i class="fas fa-user-circle fs-3 text-secondary" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="profileDropdown">
+          <li><h6 class="dropdown-header" id="accountHeader">Account</h6></li>
+          <li><a class="dropdown-item" href="account.html" id="myAccount">My Account</a></li>
+          <li><a class="dropdown-item" href="settings.html" id="settingsLink">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header" id="supportHeader">Support</h6></li>
+          <li><a class="dropdown-item" href="help.html" id="helpLink">Help</a></li>
+          <li><a class="dropdown-item" href="feedback.html" id="feedbackLink">Feedback</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html" id="logoutBtn">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+  <section class="contact-section">
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <div class="input-group">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="name" placeholder="Your Name">
+        </div>
+        <p id="nameError" class="error-message"></p>
+
+        <div class="input-group">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" id="email" placeholder="Your Email">
+        </div>
+        <p id="emailError" class="error-message"></p>
+
+        <div class="input-group">
+          <i class="fa-solid fa-message"></i>
+          <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+        </div>
+        <p id="messageError" class="error-message"></p>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+<!-- Footer  -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #0d6efd;">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- About  -->
+        <div class="col-md-3">
+          <h5 class="fw-bold">CampusShield</h5>
+          <p class="small">
+            Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
+          </p>
+        </div>
+        <!-- Quick Links  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#report">Report</a></li>
+          </ul>
+        </div>
+        <!-- Contact  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Contact</h6>
+          <ul class="list-unstyled mt-3 small">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>support@campusshield.com</li>
+            <li><i class="bi bi-telephone-fill me-2"></i>+1 234 567 890</li>
+          </ul>
+        </div>
+         <!-- Newsletter  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Stay Updated</h6>
+          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <form class="d-flex">
+            <input type="email" class="form-control me-2" placeholder="Your Email" required>
+            <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
+          </form>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light mt-4">
+      <div class="text-center small mt-3">
+        <p class="mb-0">© 2025 CampusShield. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+      let name = document.getElementById('name').value.trim();
+      let email = document.getElementById('email').value.trim();
+      let message = document.getElementById('message').value.trim();
+
+      // Clear old errors
+      document.getElementById('nameError').innerText = '';
+      document.getElementById('emailError').innerText = '';
+      document.getElementById('messageError').innerText = '';
+
+      // Name validation
+      if (name === '') {
+        document.getElementById('nameError').innerText = 'Please enter your name.';
+        isValid = false;
+      }
+
+      // Email validation
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email === '') {
+        document.getElementById('emailError').innerText = 'Please enter your email.';
+        isValid = false;
+      } else if (!emailPattern.test(email)) {
+        document.getElementById('emailError').innerText = 'Please enter a valid email.';
+        isValid = false;
+      }
+
+      // Message validation
+      if (message === '') {
+        document.getElementById('messageError').innerText = 'Please enter your message.';
+        isValid = false;
+      } else if (message.length < 10) {
+        document.getElementById('messageError').innerText = 'Message must be at least 10 characters.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert('Message sent successfully!');
+        document.getElementById('contactForm').reset();
+      }
+    });
+  </script>
+</body>
+</html>
