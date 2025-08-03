@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register|SafeSphere</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+         /* Navbar Styling */
+.navbar {
+  background-color: #f8fafc;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+  color: #1e293b;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+  padding: 0.6rem 1rem;
+}
+.navbar-nav .nav-link:hover {
+  color: #2563eb;
+}
+.navbar.shrink {
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Report Now Button */
+.btn-warning{
+  color: #1e293b;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(250, 204, 21, 0.3);
+}
+.btn-warning:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(234, 179, 8, 0.4);
+}
+
+/* Login Button */
+.btn-outline-primary {
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+}
+.btn-outline-primary:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Profile Icon */
+.profile-icon i {
+  color: #16a34a;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.profile-icon i:hover {
+  color: #15803d;
+}
+
+/* Notification Bell Dot */
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  display: none;
+}
+#notificationBell.new {
+  animation: shake 0.6s ease-in-out 2;
+}
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+body.dark-mode .navbar {
+  background-color: #0f172a;
+}
+body.dark-mode .nav-link {
+  color: #f8fafc;
+}
+
+/* Search Bar */
+#searchInput {
+  max-width: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  border: 1px solid #2563eb;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+#searchInput.active {
+  max-width: 180px;
+  opacity: 1;
+}
+
+/* Hamburger Icon */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+ /* Container */
+    .register-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15); /* frosted glass background */
+  border-radius: 15px;
+  width: 380px;
+  padding: 2.5rem 2rem 3rem;
+  backdrop-filter: blur(15px); /* main glassmorphism effect */
+  -webkit-backdrop-filter: blur(15px); /* for Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  animation: slideIn 0.8s ease forwards;
+}
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      color: #102a43;
+      text-align: center;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    /* Form Elements */
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #334e68;
+      letter-spacing: 0.04em;
+      font-size: 0.9rem;
+    }
+    .form-wrapper {
+  height: calc(100vh - 100px); /* adjust based on navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #a9bac7;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #102a43;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: inset 0 0 6px #e3e7ed;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #4fbfa8;
+      box-shadow: 0 0 8px #4fbfa8;
+      outline: none;
+    }
+
+    /* Error messages */
+    .error {
+      color: #f44336;
+      font-size: 0.85rem;
+      margin-top: -0.8rem;
+      margin-bottom: 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      height: 0;
+    }
+    .error.visible {
+      opacity: 1;
+      height: auto;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      width: 100%;
+      background: #4fbfa8;
+      color: white;
+      padding: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(79, 191, 168, 0.4);
+      transition: background 0.3s ease, transform 0.2s ease;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    button[type="submit"]:hover {
+      background: #3ca690;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(60, 166, 144, 0.5);
+    }
+    button[type="submit"]:active {
+      transform: translateY(1px);
+      box-shadow: 0 5px 10px rgba(60, 166, 144, 0.3);
+    }
+
+    /* Success message */
+    #successMessage {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background-color: #d4edda;
+      color: #155724;
+      font-weight: 700;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    #successMessage.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Link to login */
+    .login-link {
+      margin-top: 1.4rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #334e68;
+    }
+    .login-link a {
+      text-decoration: none;
+      color: #4fbfa8;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    .login-link a:hover {
+      color: #3ca690;
+    }
+    /* Footer Styling */
+footer {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #d1d5db;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Gradient Overlay */
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.1), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* Headings */
+footer h5, footer h6 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Links */
+footer a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Contact Icons */
+footer i {
+  color: #60a5fa;
+  margin-right: 6px;
+}
+
+/* Newsletter Input */
+footer .form-control {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #d1d5db;
+  border-radius: 30px;
+  padding: 8px 15px;
+  transition: border-color 0.3s;
+}
+footer .form-control:focus {
+  border-color: #60a5fa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(96,165,250,0.4);
+}
+
+/* Newsletter Button */
+footer .btn-light {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: #60a5fa;
+  border: none;
+}
+footer .btn-light:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* Social Icons */
+footer .bi-facebook,
+footer .bi-twitter,
+footer .bi-instagram {
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+footer a:hover .bi-facebook { color: #3b82f6; }
+footer a:hover .bi-twitter { color: #60a5fa; }
+footer a:hover .bi-instagram { color: #f43f5e; }
+
+/* Divider */
+footer hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Bottom Text */
+footer .text-center p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+  </style>
+</head>
+<body style="background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;">
+   <!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top bg-white py-3">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center text-primary fs-4" href="#">
+      <i class="fas fa-shield-alt me-2 fs-4"></i> <span id="logoText">SafeSphere</span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler custom-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html" id="homeLink">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="aboutus.html" id="aboutLink">About Us</a></li>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-lg-2 px-4 py-2 rounded-pill fw-semibold" href="report.html" id="reportBtn">Report Now</a>
+        </li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="dashboard.html" id="dashboardLink">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="contactus.html" id="contactLink">Contact</a></li>
+
+        <!-- Search Icon -->
+        <li class="nav-item d-flex align-items-center ms-2">
+          <i class="bi bi-search fs-5 cursor-pointer" id="searchToggle"></i>
+          <input type="text" id="searchInput" class="form-control d-none ms-2" placeholder="Search...">
+        </li>
+
+        <!-- Notification Bell -->
+        <li class="nav-item position-relative ms-3">
+          <i class="bi bi-bell fs-5 cursor-pointer" id="notificationBell"></i>
+          <span class="notification-dot"></span>
+        </li>
+
+        <!-- Dark Mode Toggle -->
+        <li class="nav-item ms-3">
+          <i class="bi bi-moon-stars fs-5 cursor-pointer" id="themeToggle"></i>
+        </li>
+
+        <!-- Language Selector -->
+        <li class="nav-item dropdown ms-3">
+          <i class="bi bi-translate fs-5 cursor-pointer dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+          </ul>
+        </li>
+
+        <!-- Login Button -->
+        <li class="nav-item">
+          <a href="login.html" class="btn btn-outline-primary ms-lg-2 px-4 py-2 rounded-pill" id="loginBtn">Login</a>
+        </li>
+      </ul>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-icon dropdown ms-3">
+        <i class="fas fa-user-circle fs-3 text-secondary" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="profileDropdown">
+          <li><h6 class="dropdown-header" id="accountHeader">Account</h6></li>
+          <li><a class="dropdown-item" href="account.html" id="myAccount">My Account</a></li>
+          <li><a class="dropdown-item" href="settings.html" id="settingsLink">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header" id="supportHeader">Support</h6></li>
+          <li><a class="dropdown-item" href="help.html" id="helpLink">Help</a></li>
+          <li><a class="dropdown-item" href="feedback.html" id="feedbackLink">Feedback</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html" id="logoutBtn">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<br><br><br><br><br><br><br><br><br>
+  <div class="form-wrapper">
+  <div class="register-container" role="main" aria-label="Register form">
+    <h2>Create Your Account</h2>
+    <form id="registerForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-describedby="nameError" />
+      <div id="nameError" class="error" aria-live="assertive"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required aria-describedby="emailError" />
+      <div id="emailError" class="error" aria-live="assertive"></div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required aria-describedby="passwordError" />
+      <div id="passwordError" class="error" aria-live="assertive"></div>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required aria-describedby="confirmPasswordError" />
+      <div id="confirmPasswordError" class="error" aria-live="assertive"></div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div id="successMessage" role="alert" aria-live="polite"></div>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
+  <!-- Footer  -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #0d6efd;">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- About  -->
+        <div class="col-md-3">
+          <h5 class="fw-bold">CampusShield</h5>
+          <p class="small">
+            Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
+          </p>
+        </div>
+        <!-- Quick Links  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#report">Report</a></li>
+          </ul>
+        </div>
+        <!-- Contact  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Contact</h6>
+          <ul class="list-unstyled mt-3 small">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>support@campusshield.com</li>
+            <li><i class="bi bi-telephone-fill me-2"></i>+1 234 567 890</li>
+          </ul>
+        </div>
+         <!-- Newsletter  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Stay Updated</h6>
+          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <form class="d-flex">
+            <input type="email" class="form-control me-2" placeholder="Your Email" required>
+            <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
+          </form>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light mt-4">
+      <div class="text-center small mt-3">
+        <p class="mb-0">© 2025 CampusShield. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="Js/script.js"></script>
+</body>
+</html>
