@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Support - SafeSphere</title>
+  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+   <!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top bg-white py-3">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center text-primary fs-4" href="#">
+      <i class="fas fa-shield-alt me-2 fs-4"></i> <span id="logoText">SafeSphere</span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler custom-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html" id="homeLink">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="aboutus.html" id="aboutLink">About Us</a></li>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-lg-2 px-4 py-2 rounded-pill fw-semibold" href="report.html" id="reportBtn">Report Now</a>
+        </li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="dashboard.html" id="dashboardLink">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="contactus.html" id="contactLink">Contact</a></li>
+
+        <!-- Search Icon -->
+        <li class="nav-item d-flex align-items-center ms-2">
+          <i class="bi bi-search fs-5 cursor-pointer" id="searchToggle"></i>
+          <input type="text" id="searchInput" class="form-control d-none ms-2" placeholder="Search...">
+        </li>
+
+        <!-- Notification Bell -->
+        <li class="nav-item position-relative ms-3">
+          <i class="bi bi-bell fs-5 cursor-pointer" id="notificationBell"></i>
+          <span class="notification-dot"></span>
+        </li>
+
+        <!-- Dark Mode Toggle -->
+        <li class="nav-item ms-3">
+          <i class="bi bi-moon-stars fs-5 cursor-pointer" id="themeToggle"></i>
+        </li>
+
+        <!-- Language Selector -->
+        <li class="nav-item dropdown ms-3">
+          <i class="bi bi-translate fs-5 cursor-pointer dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+          </ul>
+        </li>
+
+        <!-- Login Button -->
+        <li class="nav-item">
+          <a href="login.html" class="btn btn-outline-primary ms-lg-2 px-4 py-2 rounded-pill" id="loginBtn">Login</a>
+        </li>
+      </ul>
+
+      <!-- Profile Dropdown -->
+      <div class="profile-icon dropdown ms-3">
+        <i class="fas fa-user-circle fs-3 text-secondary" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded" aria-labelledby="profileDropdown">
+          <li><h6 class="dropdown-header" id="accountHeader">Account</h6></li>
+          <li><a class="dropdown-item" href="account.html" id="myAccount">My Account</a></li>
+          <li><a class="dropdown-item" href="settings.html" id="settingsLink">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><h6 class="dropdown-header" id="supportHeader">Support</h6></li>
+          <li><a class="dropdown-item" href="help.html" id="helpLink">Help</a></li>
+          <li><a class="dropdown-item" href="feedback.html" id="feedbackLink">Feedback</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="logout.html" id="logoutBtn">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+  <br><br><br>
+
+<div class="container mt-5 mb-5">
+  <h2 class="mb-4 text-warning">Help & Support</h2>
+  
+  <div class="accordion" id="helpAccordion">
+    <!-- FAQ 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+          How do I report an issue anonymously?
+        </button>
+      </h2>
+      <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#helpAccordion">
+        <div class="accordion-body">
+          Go to the "Report" section and fill out the form without including your name or contact details. Your submission will remain anonymous.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+          I forgot my password. What should I do?
+        </button>
+      </h2>
+      <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#helpAccordion">
+        <div class="accordion-body">
+          Click on the “Forgot Password” link on the login page and follow the instructions to reset your password.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+          How can I change my account details?
+        </button>
+      </h2>
+      <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#helpAccordion">
+        <div class="accordion-body">
+          Navigate to the Account section by clicking the profile icon, then select “Edit Profile” to update your information.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <h4 class="mb-3">Need More Help?</h4>
+  <form>
+    <div class="mb-3">
+      <label for="email" class="form-label">Your Email Address</label>
+      <input type="email" class="form-control" id="email" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Describe Your Issue</label>
+      <textarea class="form-control" id="message" rows="4" placeholder="Write your question or issue here..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-warning">Submit</button>
+  </form>
+</div>
+
+<!-- Footer  -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #0d6efd;">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- About  -->
+        <div class="col-md-3">
+          <h5 class="fw-bold">SafeSphere</h5>
+          <p class="small">
+            Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
+          </p>
+        </div>
+        <!-- Quick Links  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#report">Report</a></li>
+          </ul>
+        </div>
+        <!-- Contact  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Contact</h6>
+          <ul class="list-unstyled mt-3 small">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>support@safesphere.com</li>
+            <li><i class="bi bi-telephone-fill me-2"></i>+1 234 567 890</li>
+          </ul>
+        </div>
+         <!-- Newsletter  -->
+        <div class="col-md-3">
+          <h6 class="fw-bold">Stay Updated</h6>
+          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <form class="d-flex">
+            <input type="email" class="form-control me-2" placeholder="Your Email" required>
+            <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
+          </form>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light mt-4">
+      <div class="text-center small mt-3">
+        <p class="mb-0">© 2025 SafeSphere. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
