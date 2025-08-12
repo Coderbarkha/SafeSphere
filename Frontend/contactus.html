@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | CampusShield</title>
+  <title>Contact Us | SafeSphere</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -139,81 +139,78 @@ body.dark-mode .nav-link {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-    /* Contact Section */
     .contact-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-      background: url('https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      position: relative;
-    }
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.3);
-      backdrop-filter: blur(2px);
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80')
+    center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
 
-    .contact-card {
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-      width: 100%;
-      padding: 2rem;
-      background: rgba(255,255,255,0.95);
-      border-radius: 15px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-in-out;
-    }
-    .contact-card h2 { color: #2563eb; margin-bottom: 1rem; }
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay only */
+  z-index: 0;
+}
 
-    .input-group {
-      position: relative;
-      margin-bottom: 1rem;
-    }
-    .input-group input,
-    .input-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem 0.8rem 2.5rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      background: #f8fafc;
-      transition: 0.3s;
-    }
-    .input-group i {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      color: #6b7280;
-      font-size: 1rem;
-    }
-    .input-group input:focus,
-    .input-group textarea:focus {
-      border-color: #2563eb;
-      background: #fff;
-      outline: none;
-      box-shadow: 0 0 8px rgba(37,99,235,0.3);
-    }
+.contact-card {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 20px;
 
-    .contact-card button {
-      width: 100%;
-      padding: 0.8rem;
-      background: #2563eb;
-      color: #fff;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .contact-card button:hover {
-      background: #1e4fd1;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(37,99,235,0.4);
-    }
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.contact-card h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.contact-card input,
+.contact-card textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-card button {
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-card button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
 
     .error-message {
       color: red;
@@ -394,47 +391,104 @@ footer .text-center p {
           <li><a class="dropdown-item" href="help.html" id="helpLink">Help</a></li>
           <li><a class="dropdown-item" href="feedback.html" id="feedbackLink">Feedback</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="login.html" id="logoutBtn">Logout</a></li>
+          <li><a class="dropdown-item text-danger" href="logout.html" id="logoutBtn">Logout</a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
 <br><br><br>
-  <section class="contact-section">
-    <div class="contact-card">
-      <h2>Contact Us</h2>
-      <form id="contactForm">
-        <div class="input-group">
-          <i class="fa-solid fa-user"></i>
-          <input type="text" id="name" placeholder="Your Name">
-        </div>
-        <p id="nameError" class="error-message"></p>
+<!-- Contact Section -->
+<section class="contact-section" style="
+  background: url('images/contact.jfif') 
+  center/cover no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+">
+  <div class="contact-card shadow-lg">
+    <h2 id="contact"><i class="fas fa-envelope-open-text me-2"></i> Contact Us</h2>
+    <p class="text-center text-light mb-4" id="contactDescription">
+      Have questions or feedback? Reach out to us and we’ll get back to you soon!
+    </p>
 
-        <div class="input-group">
-          <i class="fa-solid fa-envelope"></i>
-          <input type="email" id="email" placeholder="Your Email">
-        </div>
-        <p id="emailError" class="error-message"></p>
+    <form>
+      <!-- Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label text-light" id="nameLabel">
+          <i class="fas fa-user me-2"></i>Your Name
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter your name"
+          required
+        />
+        <div class="error-message" id="nameError"></div>
+      </div>
 
-        <div class="input-group">
-          <i class="fa-solid fa-message"></i>
-          <textarea id="message" rows="4" placeholder="Your Message"></textarea>
-        </div>
-        <p id="messageError" class="error-message"></p>
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label text-light" id="emailLabel">
+          <i class="fas fa-envelope me-2"></i>Email Address
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        <div class="error-message" id="emailError"></div>
+      </div>
 
-        <button type="submit">Send Message</button>
-      </form>
+      <!-- Message -->
+      <div class="mb-3">
+        <label for="message" class="form-label text-light" id="messageLabel">
+          <i class="fas fa-comment-dots me-2"></i>Your Message
+        </label>
+        <textarea
+          class="form-control"
+          id="message"
+          rows="4"
+          placeholder="Write your message..."
+          required
+        ></textarea>
+        <div class="error-message" id="messageError"></div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" id="sendMessageBtn">
+          <i class="fas fa-paper-plane me-2"></i> Send Message
+        </button>
+      </div>
+    </form>
+
+    <!-- Contact Info -->
+    <div class="mt-4 text-center">
+      <p class="text-light mb-1">
+        <i class="fas fa-phone-alt me-2"></i> +1 234 567 890
+      </p>
+      <p class="text-light">
+        <i class="fas fa-map-marker-alt me-2"></i> 123 Campus Street, City, Country
+      </p>
     </div>
-  </section>
+  </div>
+</section>
+
+
 <!-- Footer  -->
   <footer class="text-white pt-5 pb-4" style="background-color: #0d6efd;">
     <div class="container">
       <div class="row gy-4">
         <!-- About  -->
         <div class="col-md-3">
-          <h5 class="fw-bold">CampusShield</h5>
-          <p class="small">
+          <h5 class="fw-bold" id="safesphere">SafeSphere</h5>
+          <p class="small" id="footerDescription">
             Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
           </p>
         </div>
@@ -442,26 +496,26 @@ footer .text-center p {
         <div class="col-md-3">
           <h6 class="fw-bold">Quick Links</h6>
           <ul class="list-unstyled mt-3">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#report">Report</a></li>
+            <li><a href="#home" id="homeqLink">Home</a></li>
+            <li><a href="#about" id="aboutqLink">About Us</a></li>
+            <li><a href="#report" id="reportqBtn">Report Now</a></li>
+            <li><a href="#dashboard" id="dashboardqLink">Dashboard</a></li>
+            <li><a href="#contact" id="contactqLink">Contact Us</a></li>
           </ul>
         </div>
         <!-- Contact  -->
         <div class="col-md-3">
-          <h6 class="fw-bold">Contact</h6>
+          <h6 class="fw-bold" id="contact">Contact</h6>
           <ul class="list-unstyled mt-3 small">
             <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
-            <li><i class="bi bi-envelope-fill me-2"></i>support@campusshield.com</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>support@safesphere.com</li>
             <li><i class="bi bi-telephone-fill me-2"></i>+1 234 567 890</li>
           </ul>
         </div>
          <!-- Newsletter  -->
         <div class="col-md-3">
-          <h6 class="fw-bold">Stay Updated</h6>
-          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <h6 class="fw-bold" id="update">Stay Updated</h6>
+          <p class="small" id="updateDescription">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
           <form class="d-flex">
             <input type="email" class="form-control me-2" placeholder="Your Email" required>
             <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
@@ -475,10 +529,14 @@ footer .text-center p {
       </div>
       <hr class="border-light mt-4">
       <div class="text-center small mt-3">
-        <p class="mb-0">© 2025 CampusShield. All Rights Reserved.</p>
+        <p class="mb-0" id="footerText">© 2025 SafeSphere. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script src="lang.js"></script>
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
