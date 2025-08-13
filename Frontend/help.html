@@ -89,7 +89,7 @@
   <br><br><br>
 
 <div class="container mt-5 mb-5">
-  <h2 class="mb-4 text-warning">Help & Support</h2>
+  <h2 class="mb-4 text-warning" id="helpsupport">Help & Support</h2>
   
   <div class="accordion" id="helpAccordion">
     <!-- FAQ 1 -->
@@ -100,7 +100,7 @@
         </button>
       </h2>
       <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#helpAccordion">
-        <div class="accordion-body">
+        <div class="accordion-body" >
           Go to the "Report" section and fill out the form without including your name or contact details. Your submission will remain anonymous.
         </div>
       </div>
@@ -128,7 +128,7 @@
         </button>
       </h2>
       <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#helpAccordion">
-        <div class="accordion-body">
+        <div class="accordion-body" >
           Navigate to the Account section by clicking the profile icon, then select “Edit Profile” to update your information.
         </div>
       </div>
@@ -137,17 +137,17 @@
 
   <hr class="my-5">
 
-  <h4 class="mb-3">Need More Help?</h4>
+  <h4 class="mb-3" id="morehelp">Need More Help?</h4>
   <form>
     <div class="mb-3">
-      <label for="email" class="form-label">Your Email Address</label>
+      <label for="email" class="form-label" id="youremail">Your Email Address</label>
       <input type="email" class="form-control" id="email" placeholder="name@example.com">
     </div>
     <div class="mb-3">
-      <label for="message" class="form-label">Describe Your Issue</label>
+      <label for="message" class="form-label" id="yourissue">Describe Your Issue</label>
       <textarea class="form-control" id="message" rows="4" placeholder="Write your question or issue here..."></textarea>
     </div>
-    <button type="submit" class="btn btn-warning">Submit</button>
+    <button type="submit" class="btn btn-warning" id="submitBtn">Submit</button>
   </form>
 </div>
 
@@ -157,8 +157,8 @@
       <div class="row gy-4">
         <!-- About  -->
         <div class="col-md-3">
-          <h5 class="fw-bold">SafeSphere</h5>
-          <p class="small">
+          <h5 class="fw-bold" id="safesphere">SafeSphere</h5>
+          <p class="small" id="footerDescription">
             Speak up safely, report anonymously, and help create a secure learning environment where every student feels safe.
           </p>
         </div>
@@ -166,16 +166,16 @@
         <div class="col-md-3">
           <h6 class="fw-bold">Quick Links</h6>
           <ul class="list-unstyled mt-3">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#report">Report</a></li>
+            <li><a href="#home" id="homeqLink">Home</a></li>
+            <li><a href="#about" id="aboutqLink">About Us</a></li>
+            <li><a href="#report" id="reportqBtn">Report Now</a></li>
+            <li><a href="#dashboard" id="dashboardqLink">Dashboard</a></li>
+            <li><a href="#contact" id="contactqLink">Contact Us</a></li>
           </ul>
         </div>
         <!-- Contact  -->
         <div class="col-md-3">
-          <h6 class="fw-bold">Contact</h6>
+          <h6 class="fw-bold" id="contact">Contact</h6>
           <ul class="list-unstyled mt-3 small">
             <li><i class="bi bi-geo-alt-fill me-2"></i>123 Campus Road, City</li>
             <li><i class="bi bi-envelope-fill me-2"></i>support@safesphere.com</li>
@@ -184,8 +184,8 @@
         </div>
          <!-- Newsletter  -->
         <div class="col-md-3">
-          <h6 class="fw-bold">Stay Updated</h6>
-          <p class="small">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
+          <h6 class="fw-bold" id="update">Stay Updated</h6>
+          <p class="small" id="updateDescription">Subscribe to get tips, safety updates, and resources for a safer student life.</p>
           <form class="d-flex">
             <input type="email" class="form-control me-2" placeholder="Your Email" required>
             <button class="btn btn-light" type="submit"><i class="bi bi-send-fill"></i></button>
@@ -199,12 +199,14 @@
       </div>
       <hr class="border-light mt-4">
       <div class="text-center small mt-3">
-        <p class="mb-0">© 2025 SafeSphere. All Rights Reserved.</p>
+        <p class="mb-0" id="footerText">© 2025 SafeSphere. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="lang.js"></script>
 </body>
 </html>
