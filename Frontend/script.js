@@ -1,22 +1,3 @@
-const themeToggle = document.getElementById('themeToggle');
-
-themeToggle.addEventListener('click', () => {
-  // Toggle dark mode on body
-  document.body.classList.toggle('dark-mode');
-
-  // Check if dark mode is now ON
-  const isDarkMode = document.body.classList.contains('dark-mode');
-
-  // Change icon accordingly
-  if (isDarkMode) {
-    themeToggle.classList.remove('bi-moon-stars');
-    themeToggle.classList.add('bi-sun');
-  } else {
-    themeToggle.classList.remove('bi-sun');
-    themeToggle.classList.add('bi-moon-stars');
-  }
-});
-
 
 // Search Toggle
 const searchToggle = document.getElementById('searchToggle');
