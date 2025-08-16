@@ -1,0 +1,102 @@
+/* 🌞 Light Mode (Default already applied in your normal CSS) */
+/* Light mode (default) */
+body {
+  background-color: white;
+  color: black;
+}
+
+.navbar, .menu, .card {
+  background-color: white;
+  color: black;
+}
+
+/* 🌙 Dark Mode - Apply globally */
+body.dark-mode {
+  background-color: #1e293b; /* Slate background */
+  color: #f8fafc; /* Light text */
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+  background-color: #0f172a !important;
+}
+
+/* Hero / About / Section backgrounds */
+body.dark-mode section,
+body.dark-mode .hero,
+body.dark-mode .about,
+body.dark-mode .services,
+body.dark-mode .contact,
+body.dark-mode .report,
+body.dark-mode .feedback {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* Headings, text inside sections */
+body.dark-mode section h1,
+body.dark-mode section h2,
+body.dark-mode section h3,
+body.dark-mode section h4,
+body.dark-mode section h5,
+body.dark-mode section h6,
+body.dark-mode section p {
+  color:black !important;
+}
+
+/* Links */
+body.dark-mode .nav-link  {
+  color: #f8fafc !important;
+}
+
+body.dark-mode i{
+  color:white;
+}
+
+/* Footer */
+body.dark-mode footer {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* Buttons */
+body.dark-mode .btn {
+  background-color: #334155;
+  color: #f8fafc;
+  border: 1px solid #475569;
+}
+body.dark-mode .btn:hover {
+  background-color: #475569;
+}
+
+/* Forms */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Cards */
+body.dark-mode .card {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #475569;
+}
+
+/* Dropdown menu */
+body.dark-mode .dropdown-menu {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+body.dark-mode .dropdown-item {
+  color: #f8fafc;
+}
+body.dark-mode .dropdown-item:hover {
+  background-color: #334155;
+}
