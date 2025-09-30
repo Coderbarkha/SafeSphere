@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# SafeSphere 🌐
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**SafeSphere** is an anonymous reporting platform designed to help students report campus incidents such as bullying, harassment, and other safety concerns directly to campus authorities – all while keeping their identity completely anonymous.  
 
-## Available Scripts
+The platform is built with **React.js** and **Tailwind CSS**, with a modern, responsive, and user-friendly interface. It aims to create safer campus environments by empowering students to report incidents without fear.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 💡 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Core Features
+- **Anonymous Reporting:** Students can report incidents without revealing their identity.
+- **Category-Based Forms:** Reports can be categorized as Bullying, Harassment, Theft, or Other.
+- **Responsive UI:** Works on mobile, tablet, and desktop screens.
+- **FAQ Section:** Provides answers to common questions about reporting and anonymity.
+- **Language Selector:** Multi-language support (English, Hindi, etc.).
+- **Light Blue / White / Yellow Theme:** Represents trust, clarity, and caution.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Future Features
+- **Authority Dashboard:** Campus authorities can view, track, and manage reports.
+- **Data Analytics:** Visual charts showing incident categories and trends.
+- **Email Notifications:** Alerts sent to authorities on new reports.
+- **Attachment Upload:** Students can attach screenshots or evidence.
+- **AI Categorization:** NLP-based automatic incident categorization.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🏗️ Tech Stack
 
-### `npm run build`
+- **Frontend:** React.js, Tailwind CSS
+- **Routing:** React Router
+- **State Management:** React useState & Context API (optional)
+- **Icons & Animations:** React Icons, Tailwind Animations
+- **Backend (Future):** Node.js, Express, MongoDB/MySQL
+- **Authentication (Future):** JWT for authorities
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🗂️ Folder Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+safesphere/
+├── src/
+│ ├── assets/ # images, icons
+│ ├── components/ # reusable UI components
+│ │ ├── Navbar.jsx
+│ │ ├── Footer.jsx
+│ │ ├── Hero.jsx
+│ │ ├── IncidentForm.jsx
+│ │ ├── FAQ.jsx
+│ │ ├── LanguageSelector.jsx
+│ │ └── Card.jsx
+│ ├── pages/ # full pages
+│ │ ├── Home.jsx
+│ │ ├── About.jsx
+│ │ ├── Report.jsx
+│ │ ├── FAQPage.jsx
+│ │ ├── Login.jsx
+│ │ └── Dashboard.jsx (future)
+│ ├── App.jsx
+│ ├── index.js
+│ └── index.css
+├── public/
+└── package.json
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🚀 Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Coderbarkha/SafeSphere.git
+cd SafeSphere
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2️⃣ Install dependencies
+npm install
 
-## Learn More
+3️⃣ Start development server
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open http://localhost:3000
+ to view the app in the browser.
 
-### Code Splitting
+🎨 Design Guidelines
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Color Palette:
 
-### Analyzing the Bundle Size
+Light Blue → Calm & Trust
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+White → Clarity & Simplicity
 
-### Making a Progressive Web App
+Yellow → Caution & Warning
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Typography: Clean, modern fonts (Roboto / Inter / Assistant)
 
-### Advanced Configuration
+UI Style: Minimalistic, responsive, card-based layout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+📈 Future Roadmap
 
-### Deployment
+Integrate backend APIs for report submission and authority dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Add authentication for campus authorities (JWT).
 
-### `npm run build` fails to minify
+Implement email notifications for new reports.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Add multi-language support and PWA features.
+
+Build analytics dashboard with graphs and charts.
+
+🤝 Contribution
+
+Contributions are welcome! If you want to contribute, please:
+
+Fork the repository
+
+Create a new branch (git checkout -b feature/YourFeature)
+
+Commit your changes (git commit -m "Add some feature")
+
+Push to the branch (git push origin feature/YourFeature)
+
+Open a Pull Request
+
+⚖️ License
+
+This project is open-source and available under the MIT License.
+
+📌 Contact
+
+Developer: Barkha Thakkar
+GitHub: https://github.com/Coderbarkha
+
+LinkedIn: [Your LinkedIn URL]
+Email: [Your Email]
+
+SafeSphere – Empowering students, making campuses safer.
