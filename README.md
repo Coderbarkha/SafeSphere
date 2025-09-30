@@ -40,25 +40,26 @@ The platform is built with **React.js** and **Tailwind CSS**, with a modern, res
 
 safesphere/
 ├── src/
-│ ├── assets/ # images, icons
-│ ├── components/ # reusable UI components
-│ │ ├── Navbar.jsx
-│ │ ├── Footer.jsx
-│ │ ├── Hero.jsx
-│ │ ├── IncidentForm.jsx
-│ │ ├── FAQ.jsx
-│ │ ├── LanguageSelector.jsx
-│ │ └── Card.jsx
-│ ├── pages/ # full pages
-│ │ ├── Home.jsx
-│ │ ├── About.jsx
-│ │ ├── Report.jsx
-│ │ ├── FAQPage.jsx
-│ │ ├── Login.jsx
-│ │ └── Dashboard.jsx (future)
-│ ├── App.jsx
-│ ├── index.js
-│ └── index.css
+│ 
+    ├── assets/ # images, icons
+│   ├── components/ # reusable UI components
+│   │ ├── Navbar.jsx
+│   │ ├── Footer.jsx
+│   │ ├── Hero.jsx
+│   │ ├── IncidentForm.jsx
+│   │ ├── FAQ.jsx
+│   │ ├── LanguageSelector.jsx
+│   │ └── Card.jsx
+│   ├── pages/ # full pages
+│   │ ├── Home.jsx
+│   │ ├── About.jsx
+│   │ ├── Report.jsx
+│   │ ├── FAQPage.jsx
+│   │ ├── Login.jsx
+│   │ └── Dashboard.jsx (future)
+│   ├── App.jsx
+│   ├── index.js
+│   └── index.css
 ├── public/
 └── package.json
 
@@ -82,7 +83,7 @@ npm start
 Open http://localhost:3000
  to view the app in the browser.
 
-🎨 Design Guidelines
+🎨### Design Guidelines
 
 Color Palette:
 
@@ -96,7 +97,7 @@ Typography: Clean, modern fonts (Roboto / Inter / Assistant)
 
 UI Style: Minimalistic, responsive, card-based layout
 
-📈 Future Roadmap
+📈### Future Roadmap
 
 Integrate backend APIs for report submission and authority dashboard.
 
@@ -108,7 +109,7 @@ Add multi-language support and PWA features.
 
 Build analytics dashboard with graphs and charts.
 
-🤝 Contribution
+🤝### Contribution
 
 Contributions are welcome! If you want to contribute, please:
 
@@ -122,16 +123,15 @@ Push to the branch (git push origin feature/YourFeature)
 
 Open a Pull Request
 
-⚖️ License
+⚖️### License
 
 This project is open-source and available under the MIT License.
 
-📌 Contact
+📌### Contact
 
 Developer: Barkha Thakkar
 GitHub: https://github.com/Coderbarkha
 
-LinkedIn: [Your LinkedIn URL]
-Email: [Your Email]
+Email: [barkhathakkar241@gmail.com]
 
 SafeSphere – Empowering students, making campuses safer.
