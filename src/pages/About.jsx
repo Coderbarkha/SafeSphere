@@ -1,5 +1,10 @@
 import React from "react";
 import community from "../assets/community.jfif";
+import mission from "../assets/mission.png";
+import vision from "../assets/vision.png";
+import awareness from "../assets/awareness.jfif";
+import support from "../assets/support.jfif";
+import creator from "../assets/barkhaphoto.jpeg";
 import FAQ from "../components/FAQ";
 import "../styles/about.css";
 
@@ -20,7 +25,7 @@ const About = () => {
               space for reporting, learning, and community engagement.
             </p>
             <img
-              src="/images/communityicon.png"
+              src={community}
               alt="Community"
               className="mt-4"
               style={{ maxWidth: "220px" }}
@@ -45,7 +50,7 @@ const About = () => {
             <div className="col-md-6">
               <div className="section-card">
                 <img
-                  src="/images/missionicon.png"
+                  src={mission}
                   alt="Mission"
                   className="mb-3"
                   style={{ maxWidth: "180px" }}
@@ -62,7 +67,7 @@ const About = () => {
             <div className="col-md-6">
               <div className="section-card">
                 <img
-                  src="/images/visionicon.png"
+                  src={vision}
                   alt="Vision"
                   className="mb-3"
                   style={{ maxWidth: "180px" }}
@@ -93,7 +98,7 @@ const About = () => {
             <div className="col-md-4">
               <div className="impact-card">
                 <img
-                  src="/images/awareness.png"
+                  src={awareness}
                   alt="Awareness"
                   style={{ maxWidth: "100px" }}
                 />
@@ -105,7 +110,7 @@ const About = () => {
             <div className="col-md-4">
               <div className="impact-card">
                 <img
-                  src="/images/support.png"
+                  src={support}
                   alt="Support"
                   style={{ maxWidth: "100px" }}
                 />
@@ -138,7 +143,7 @@ const About = () => {
           <h2>Meet the Creator</h2>
           <div className="creator-card mt-4">
             <img
-              src="/images/creatorphoto.jpg"
+              src={creator}
               alt="Creator"
               className="creator-img"
             />
