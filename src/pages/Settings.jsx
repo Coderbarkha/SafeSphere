@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./dark-mode.css"; // your own CSS file
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Settings = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,7 +21,7 @@ const Settings = () => {
 
   return (
     <div className={`d-flex flex-column min-vh-100 ${darkMode ? "bg-dark text-white" : ""}`}>
-
+<Navbar/>
       {/* ================= MAIN CONTENT ================= */}
       <main className="container py-5 mt-5">
         <h2 className="mb-4 text-center">Dashboard Settings</h2>
@@ -166,6 +168,7 @@ const Settings = () => {
           Last login: July 29, 2025 at 10:23 PM
         </p>
       </main>
+      <Footer/>
     </div>
   );
 };
